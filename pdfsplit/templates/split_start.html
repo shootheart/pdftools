@@ -1,0 +1,16 @@
+{% extends "split_base.html" %}
+{% block body %}  
+
+    {% if filename %}
+        <form id='form2' method='get' action='/pdfsplit/split/{{ filename }}'>
+            <div>
+                <p>文件名：{{ filename }}</p>
+                <input type="submit" value="开始" />
+            </div>
+        </form>
+    {% else %}
+        <div>
+            <p>文件不可用，请重新上传</p>
+        </div>
+    {% endif %}
+{% endblock %}

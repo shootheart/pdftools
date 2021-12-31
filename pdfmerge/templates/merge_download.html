@@ -1,0 +1,14 @@
+{% extends "merge_base.html" %}
+{% block body %}  
+    <div>
+        {% if filename%}
+            <p>合并完成，{{ filename }}</p>
+            <form method='get' action="{{ url }}" >
+                <input type="submit" value="下载" /> 
+            </form>
+        {% else %}
+            <p>合并失败</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+    <style type="text/css">
+        * {
+            text-align: center;
+        }
+        div {
+            padding: 10pt;
+        }
+    </style>
+    <h3>PDF分割</h3>
+
+    <div>
+        <p>分割完成，{{ filename }}</p>
+        <form method='get' action='/pdf/download/{{ filename }}' >
+            <input type="submit" value="下载" /> 
+        </form>
+    </div>
+    <div>
+        <p>点击返回</p>
+        <form method='get' action='/pdf/upload' >
+            <input type="submit" value="返回" /> 
+        </form>
+    </div>
+
+</body>

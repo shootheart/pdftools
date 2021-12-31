@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <title>PDF分割</title>
+</head>
+<body>
+    <style type="text/css">
+        * {
+            text-align: center;
+        }
+        div {
+            padding: 10pt;
+        }
+        input#file1 {
+            padding: 5pt;
+        }
+        .upload {
+            position: relative;
+            display: inline-block;
+        }
+        .upload#file1 {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+        }
+    </style>
+    <h3>PDF分割</h3>
+
+    <form id='form1' method='post' action='/pdf/uploadapi' enctype="multipart/form-data" >
+        <div class="upload">
+            <input id='file1' type='file' name='myfile' />
+            <input type='submit' />
+        </div>
+    </form>
+</body>

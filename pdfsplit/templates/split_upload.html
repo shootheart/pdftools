@@ -1,0 +1,24 @@
+{% extends "split_base.html" %}
+{% block body %}  
+    <style type="text/css">
+        input#file1 {
+            padding: 5pt;
+        }
+        .upload {
+            position: relative;
+            display: inline-block;
+        }
+        .upload#file1 {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+        }
+    </style>
+
+    <form id='form1' method='post' action='/pdfsplit/uploadapi' enctype="multipart/form-data" >
+        <div class="upload">
+            <input id='file1' type='file' name='file' />
+            <input type='submit' value="提交" />
+        </div>
+    </form>
+{% endblock %}

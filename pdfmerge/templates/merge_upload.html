@@ -1,0 +1,39 @@
+{% extends "merge_base.html" %}
+{% block body %}  
+    <style type="text/css">
+        input {
+            padding: 5pt;
+        }
+        #upload {
+            position: relative;
+            display: block;
+        }
+        #check {
+            position: relative;
+            display: block;
+        }
+
+    </style>
+    <script type="text/javascript">
+        var i = 0
+        function addElem(){
+            i++
+            //alert("ok")
+            file = document.createElement('input')
+            file.name = 'file'.concat(i)
+            file.id = 'file'
+            file.type = 'file'
+            br = document.createElement("div")
+            br.appendChild(file)
+            divup = document.getElementById("upload")
+            divup.appendChild(br)
+        }
+    </script>
+    <form id='form1' method='post' action='/pdfmerge/uploadapi' enctype="multipart/form-data" >
+        <div id="upload">
+
+        </div>
+        <div id="check"><input id='addfile' type="button" onclick="addElem()" value="添加一个文件" /></div>
+        <div><input type='submit' value="提交" /></div>
+    </form>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head></head>
+<body>
+    <style type="text/css">
+        * {
+            text-align: center;
+        }
+        div {
+            padding: 10pt;
+        }
+    </style>
+
+        <title>PDF合并</title>
+        <h3>PDF合并</h3>
+    {% block body %}
+    {% endblock %}
+    <div>
+        <p>点击返回</p>
+        <form method='get' action="{{ url_for('pdfmerge.upload') }}" >
+            <input type="submit" value="返回" /> 
+        </form>
+    </div>
+    <div>
+        <p>点击返回首页</p>
+        <form method='get' action="{{ url_for('choice') }}" >
+            <input type="submit" value="返回首页" /> 
+        </form>
+    </div>
+
+</body>
+</html>
