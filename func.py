@@ -12,12 +12,12 @@ path = os.path.abspath('.')
 
 def savefile(path):
 	if request.blueprint == 'pdfmerge': # 获取当前处理请求的蓝图 str
+		os.mkdir(path)
 		filenames = []
 		for i in range(len(request.files)):
 			file = request.files['file'+str(i + 1)]
 			filename = file.filename
 			if file and filename != '' and check_file(filename):
-				os.mkdir(path)
 				file.save(path + filename)
 				filenames.append(filename)
 			else:
