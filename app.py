@@ -13,7 +13,7 @@ app.register_blueprint(pdfconvert, url_prefix = '/pdfconvert')
 
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
 app.config['ALLOWED_EXTENSIONS_IMG'] = {'jpg', 'jpeg', 'png'}
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 #16MB
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024 #16MB
 app.config['UPLOAD_FOLDER'] = 'tmp/'
 
 @app.route('/family', strict_slashes=False)

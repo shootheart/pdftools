@@ -3,15 +3,15 @@
 from flask import Blueprint, render_template, send_from_directory, url_for
 from flask import current_app as app
 import datetime
-import fitz, glob
 from PilLite import Image
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4, landscape
 
 import sys, os
 sys.path.append("..") 
 from func import savefile
 
 pdfconvert = Blueprint('pdfconvert', __name__, template_folder='templates')
-a4width = 595 # A4纸常规宽度
 
 @pdfconvert.route('/')
 def upload():
@@ -27,23 +27,16 @@ def jpg_convert():
     
     os.chdir(filepath)
     try:
-        img_in = Image.open(filename)
-        img_wid, img_hei = img_in.size
-        if img_wid > a4width:
-            img_out = img_in.resize((a4width, int(img_hei * (a4width / img_wid)))) # 按A4纸大小缩图
-            img_out.save(filename)
-    except Exception as e:
-        print("resize %s failed: " %(filename, e))
-        outname = ''
-
-    try:
         outname = filename.split('.')[0] + '.pdf'
-        with fitz.open() as doc:
-            img_open = fitz.open(filename)
-            to_pdf = img_open.convert_to_pdf()
-            pdf_file = fitz.open('pdf', to_pdf)
-            doc.insert_pdf(pdf_file)
-            doc.save(outname)
+        img_in = Image.open(filename)
+        img_hei, img_wid = img_in.size
+        a4_wid, a4_hei = landscape(A4)
+        page = canvas.Canvas(outname)
+        if img_wid > a4_wid:
+            ratio = a4_wid / img_wid
+        page.drawImage(filename, 3, 3, img_hei * ratio, img_wid * ratio)
+        page.save()
+
     except Exception as e:
         print("jpg convert to pdf failed: %s" & e)
         outname = ''
