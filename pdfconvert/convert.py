@@ -30,11 +30,21 @@ def jpg_convert():
         outname = filename.split('.')[0] + '.pdf'
         img_in = Image.open(filename)
         img_hei, img_wid = img_in.size
+        print("image size: %f, %f" % (img_hei, img_wid))
         a4_wid, a4_hei = landscape(A4)
         page = canvas.Canvas(outname)
+
+        if img_hei > a4_hei:
+            img_wid *= (a4_hei / img_hei) 
+            img_hei = a4_hei
         if img_wid > a4_wid:
-            ratio = a4_wid / img_wid
-        page.drawImage(filename, 3, 3, img_hei * ratio, img_wid * ratio)
+            img_hei *= (a4_wid / img_wid)
+            img_wid = a4_wid
+
+        y = (a4_wid - img_wid) / 2
+        x = (a4_hei - img_hei) / 2
+
+        page.drawImage(filename, x, y, img_hei, img_wid)
         page.save()
 
     except Exception as e:
